@@ -1,0 +1,23 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Fullstack User Management</title>
+</head>
+<body>
+    <h1>Welcome to the Fullstack User Management System</h1>
+    <button onclick="listUsers()">View Users</button>
+    <div id="user-list"></div>
+
+    <script>
+        async function listUsers() {
+            const response = await fetch('http://localhost:8000/users');
+            const data = await response.json();
+            const userList = document.getElementById('user-list');
+            userList.innerHTML = ''; // Clear previous list
+            document.getElementById('user-list').innerHTML = data.message || 'No users found';
+        }
+    </script>
+
+</body>
+</html>
+</html>

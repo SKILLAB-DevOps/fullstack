@@ -1,0 +1,29 @@
+services:
+  db:
+    build:
+      context: .
+      dockerfile: Dockerfile.db
+    ports:
+      - "5432:5432"
+    environment:
+      POSTGRES_USER: fullstack
+      POSTGRES_PASSWORD: fullstack
+      POSTGRES_DB: fullstack
+
+  backend:
+    build:
+      context: .
+      dockerfile: Dockerfile.backend
+    ports:
+      - "8000:8000"
+    depends_on:
+      - db
+
+  frontend:
+    build:
+      context: .
+      dockerfile: Dockerfile.frontend
+    ports:
+      - "80:80"
+    depends_on:
+      - backend

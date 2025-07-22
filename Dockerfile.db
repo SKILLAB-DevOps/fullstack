@@ -1,0 +1,9 @@
+FROM postgres:15-alpine
+
+ENV POSTGRES_USER=fullstack
+ENV POSTGRES_PASSWORD=fullstack
+ENV POSTGRES_DB=fullstack
+
+COPY init.sql /docker-entrypoint-initdb.d/
+
+EXPOSE 5432
