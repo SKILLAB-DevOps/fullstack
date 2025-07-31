@@ -14,7 +14,13 @@
             const data = await response.json();
             const userList = document.getElementById('user-list');
             userList.innerHTML = ''; // Clear previous list
-            document.getElementById('user-list').innerHTML = data.message || 'No users found';
+            
+            if (data.users && data.users.length > 0) {
+                const usersList = data.users.map(user => `<p>ID: ${user[0]}, Name: ${user[1]}</p>`).join('');
+                userList.innerHTML = usersList;
+            } else {
+                userList.innerHTML = 'No users found';
+            }
         }
     </script>
 
