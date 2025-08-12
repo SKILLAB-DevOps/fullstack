@@ -1,0 +1,5 @@
+postgresql:
+  enabled: true
+  postgresqlUsername: fullstack
+  postgresqlPassword: fullstack
+  postgresqlDatabase: fullstack
