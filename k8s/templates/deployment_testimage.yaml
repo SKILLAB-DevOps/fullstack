@@ -1,0 +1,21 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: {{ .Values.app.name }}-test
+  namespace: {{ .Values.app.name }}
+  labels:
+    app: {{ .Values.app.name }}-test
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: {{ .Values.app.name }}-test
+  template:
+    metadata:
+      labels:
+        app: {{ .Values.app.name }}-test
+    spec:
+      containers:
+      - name: {{ .Values.app.name }}-test
+        image: ubuntu
+        command: ["sleep", "infinity"]
