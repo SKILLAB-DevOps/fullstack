@@ -6,7 +6,7 @@ metadata:
   labels:
     app: {{ .Values.app.name }}-backend
 spec:
-  replicas: 3
+  replicas: {{ .Values.app.backend.replica }}
   selector:
     matchLabels:
       app: {{ .Values.app.name }}-backend
@@ -17,9 +17,9 @@ spec:
     spec:
       containers:
       - name: {{ .Values.app.name }}-backend
-        image: komodoroot/fullstack-be:0.0.1
+        image: {{ .Values.app.backend.image }}:{{ .Values.app.backend.tag }}
         ports:
-        - containerPort: 8000
+        - containerPort: {{ .Values.app.backend.service.port }}
         env:
         - name: DB_NAME
           value: "{{ .Values.postgresql.auth.database }}"

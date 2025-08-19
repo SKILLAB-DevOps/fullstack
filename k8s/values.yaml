@@ -21,6 +21,18 @@ app:
   name: fullstack
   db:
     port: 5432
-    host: fullstack-postgres.fullstack.svc.cluster.local
+    host: fullstack-postgresql.fullstack.svc.cluster.local
   frontend:
+    image: komodoroot/fullstack-fe
+    tag: 0.0.1
+    replica: 1
+    service:
+      type: LoadBalancer
+      port: 80
   backend:
+    image: komodoroot/fullstack-be
+    tag: 0.0.3
+    replica: 1
+    service:
+      type: LoadBalancer
+      port: 8000
