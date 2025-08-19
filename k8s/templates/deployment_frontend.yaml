@@ -20,3 +20,22 @@ spec:
         image: {{ .Values.app.frontend.image }}:{{ .Values.app.frontend.tag }}
         ports:
         - containerPort: {{ .Values.app.frontend.service.port }}
+        livenessProbe:
+          httpGet:
+            path: /
+            port: {{ .Values.app.frontend.service.port }}
+          initialDelaySeconds: 30
+          periodSeconds: 10
+        readinessProbe:
+          httpGet:
+            path: /
+            port: {{ .Values.app.frontend.service.port }}
+          initialDelaySeconds: 5
+          periodSeconds: 5
+        resources:
+          limits:
+            cpu: 500m
+            memory: 512Mi
+          requests:
+            cpu: 250m
+            memory: 256Mi
