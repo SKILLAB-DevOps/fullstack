@@ -27,12 +27,12 @@ app:
     tag: 0.0.1
     replica: 1
     service:
-      type: LoadBalancer
+      type: ClusterIP
       port: 80
   backend:
     image: komodoroot/fullstack-be
     tag: 0.0.3
     replica: 1
     service:
-      type: LoadBalancer
+      type: ClusterIP
       port: 8000
